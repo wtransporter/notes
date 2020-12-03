@@ -2,7 +2,7 @@
 	<section>
 		<base-card>
 			<base-button 
-				@click="setActiveTab('single-note')"
+				@click="setActiveTab('stored-notes')"
 				:mode="selectedSingleTab"
 				>All Notes</base-button>
 			<base-button 
@@ -10,32 +10,25 @@
 				:mode="selectedAddTab">Add Note</base-button>
 		</base-card>
 	</section>
-	<section class="grid" v-if="activeTab === 'single-note'">
-		<single-note v-for="note in notes" :key="note.id"
-			:id="note.id"
-			:title="note.title"
-			:description="note.description"
-		>
-		</single-note>
-	</section>
-	<section v-else>
-		<new-resource @add-resource="addResource"></new-resource>
-	</section>
+
+	<keep-alive>
+		<component :is="activeTab"></component>
+	</keep-alive>
+
 </template>
 
 <script>
-import BaseCard from '../ui/BaseCard.vue';
-	import SingleNote from './SingleNote.vue';
+	import StoredNotes from './StoredNotes.vue';
 	import NewResource from './NewResource.vue';
+
 	export default {
 		components: {
-			SingleNote,
-			BaseCard,
+			StoredNotes,
 			NewResource,
 		},
 		data() {
 			return {
-				activeTab: 'single-note',
+				activeTab: 'stored-notes',
 				notes: [
 					{
 						id: 1,
@@ -86,12 +79,18 @@ import BaseCard from '../ui/BaseCard.vue';
 		},
 		computed: {
 			selectedAddTab() {
-				return this.activeTab === 'single-note' ? 'btn-flat' : 'btn-primary';
+				return this.activeTab === 'stored-notes' ? 'btn-flat' : 'btn-primary';
 			},
 			selectedSingleTab() {
 				return this.activeTab === 'new-resource' ? 'btn-flat' : 'btn-primary';
 			},
 
+		},
+		provide() {
+			return {
+				notes: this.notes,
+				addNote: this.addResource
+			};
 		}
 	}
 </script>
@@ -101,11 +100,4 @@ import BaseCard from '../ui/BaseCard.vue';
 		max-width: 1170px;
 		margin: auto;
 	}
-
-	.grid {
-		margin: auto;
-		display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(275px, 1fr));
-	}
-
 </style>

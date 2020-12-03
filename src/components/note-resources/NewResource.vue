@@ -12,7 +12,7 @@
 			</div>
 			<div class="form-control">
 				<label for="description">Description:</label>
-				<textarea type="text" 
+				<textarea 
 					id="description" 
 					name="description" 
 					placeholder="Description"
@@ -29,7 +29,7 @@
 
 <script>
 	export default {
-        emits: ['add-resource'],
+        inject: ['addNote'],
 		data() {
             return {
                 title: '',
@@ -38,7 +38,7 @@
         methods: {
             submitData() {
                 const enteredDescription = this.$refs.description.value;
-                this.$emit('add-resource', this.title, enteredDescription);
+                this.addNote(this.title, enteredDescription);
             }
         },
 	}

@@ -1,7 +1,7 @@
 <template>
 	<base-card>
 		<header>
-			<h4>{{ limitTitle }}</h4>
+			<h4>{{ title }}</h4>
 			<span>
 				<base-button mode="btn-flat">Delete</base-button>
 			</span>
@@ -18,16 +18,7 @@
 <script>
 
 	export default {
-        props: ['title', 'description'],
-        computed: {
-            limitTitle() {
-                if (this.title.length >30) {
-                    return this.title.slice(0, 50) + '...';   
-                } else {
-                    return this.title;
-                }
-            }
-        }
+        props: ['title', 'description', 'id'],
 	}
 </script>
 
