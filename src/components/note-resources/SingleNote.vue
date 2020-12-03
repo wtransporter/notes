@@ -3,7 +3,12 @@
 		<header>
 			<h4>{{ title }}</h4>
 			<span>
-				<base-button mode="btn-flat">Delete</base-button>
+				<base-button 
+                    @click="deleteItem"
+                    mode="btn-flat"
+                >
+                    Delete
+                </base-button>
 			</span>
 		</header>
         <nav class="left">
@@ -19,6 +24,12 @@
 
 	export default {
         props: ['title', 'description', 'id'],
+        inject: ['removeNote'],
+        methods: {
+            deleteItem() {
+                this.removeNote(this.id);
+            }
+        }
 	}
 </script>
 

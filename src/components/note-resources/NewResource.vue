@@ -1,30 +1,33 @@
 <template>
-	<base-card>
-		<form @submit.prevent="submitData">
-			<div class="form-control">
-				<label for="title">Title:</label>
-				<input type="text" 
-					id="title" 
-					name="title" 
-					placeholder="Title"
-                    v-model="title"
-				>
-			</div>
-			<div class="form-control">
-				<label for="description">Description:</label>
-				<textarea 
-					id="description" 
-					name="description" 
-					placeholder="Description"
-					rows="5"
-                    ref="description"
-				></textarea>
-			</div>
-			<div class="form-control">
-				<base-button>Submit</base-button>
-			</div>
-		</form>
-	</base-card>
+	<section>
+        <base-card>
+            <form @submit.prevent="submitData">
+                <div class="form-control">
+                    <label for="title">Title:</label>
+                    <input type="text" 
+                        id="title" 
+                        name="title" 
+                        placeholder="Title"
+                        v-model="title"
+                    >
+                </div>
+                <div class="form-control">
+                    <label for="description">Description:</label>
+                    <textarea 
+                        id="description" 
+                        name="description" 
+                        placeholder="Description"
+                        rows="5"
+                        ref="description"
+                    ></textarea>
+                </div>
+                <div class="form-control">
+                    <base-button>Submit</base-button>
+                </div>
+            </form>
+        </base-card>        
+    </section>
+
 </template>
 
 <script>

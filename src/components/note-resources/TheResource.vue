@@ -75,6 +75,12 @@
 			},
 			setActiveTab(name) {
 				this.activeTab = name;
+			},
+			removeResource(id) {
+				const foundItem = this.notes.findIndex(item => item.id === id);
+
+				this.notes.splice(foundItem, 1);
+
 			}
 		},
 		computed: {
@@ -89,7 +95,8 @@
 		provide() {
 			return {
 				notes: this.notes,
-				addNote: this.addResource
+				addNote: this.addResource,
+				removeNote: this.removeResource,
 			};
 		}
 	}
