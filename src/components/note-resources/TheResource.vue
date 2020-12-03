@@ -1,11 +1,16 @@
 <template>
 	<section>
 		<base-card>
-			<base-button>All Notes</base-button>
-			<base-button mode="btn-flat">Add Note</base-button>
+			<base-button 
+				@click="setActiveTab('single-note')"
+				:mode="selectedSingleTab"
+				>All Notes</base-button>
+			<base-button 
+				@click="setActiveTab('new-resource')"
+				:mode="selectedAddTab">Add Note</base-button>
 		</base-card>
 	</section>
-	<section class="grid">
+	<section class="grid" v-if="activeTab === 'single-note'">
 		<single-note v-for="note in notes" :key="note.id"
 			:id="note.id"
 			:title="note.title"
@@ -13,18 +18,24 @@
 		>
 		</single-note>
 	</section>
+	<section v-else>
+		<new-resource></new-resource>
+	</section>
 </template>
 
 <script>
 import BaseCard from '../ui/BaseCard.vue';
 	import SingleNote from './SingleNote.vue';
+	import NewResource from './NewResource.vue';
 	export default {
 		components: {
 			SingleNote,
-BaseCard,
+			BaseCard,
+			NewResource,
 		},
 		data() {
 			return {
+				activeTab: 'single-note',
 				notes: [
 					{
 						id: 1,
@@ -58,6 +69,20 @@ BaseCard,
 					}
 				],
 			};
+		},
+		methods: {
+			setActiveTab(name) {
+				this.activeTab = name;
+			}
+		},
+		computed: {
+			selectedAddTab() {
+				return this.activeTab === 'single-note' ? 'btn-flat' : 'btn-primary';
+			},
+			selectedSingleTab() {
+				return this.activeTab === 'new-resource' ? 'btn-flat' : 'btn-primary';
+			},
+
 		}
 	}
 </script>

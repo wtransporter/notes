@@ -9,6 +9,9 @@
 		<p>
 			{{ description }}
 		</p>
+        <nav class="left">
+            <a href>Details</a>
+        </nav>
 	</base-card>
 </template>
 
@@ -26,5 +29,19 @@
 		align-items: center;
 		padding: 0 10px;
 	}
+
+    .left {
+        text-align: left;
+        padding: 0 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #cc6b10;
+    }
+
+    a:hover {
+        color: #c58e5a;
+    }
 
 </style>

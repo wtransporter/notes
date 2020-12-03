@@ -11,7 +11,7 @@ npm install
 ```
 npm run serve
 ```
-4. Or Compile and minifie
+4. Or Compile and minify
 ```
 npm run build
 ```
