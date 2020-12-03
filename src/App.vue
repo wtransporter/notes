@@ -3,8 +3,8 @@
 	<img alt="Vue logo" src="./assets/logo.png">
 	<section>
 		<div class="content">
-			<button class="btn btn-primary">All Notes</button>
-			<button class="btn btn-primary">Add Note</button>
+			<base-button>All Notes</base-button>
+			<base-button mode="btn-flat">Add Note</base-button>
 		</div>
 	</section>
 	<section class="grid">
@@ -12,7 +12,7 @@
 			<header>
 				<h3>{{ note.title }}</h3>
 				<span>
-					<button class="btn btn-flat">Delete</button>
+					<base-button mode="btn-flat">Delete</base-button>
 				</span>
 			</header>
 			<p>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-	import TheHeader from './components/layouts/TheHeader.vue'
+	import TheHeader from './components/layouts/TheHeader.vue';
 
 	export default {
 		name: 'App',
@@ -70,6 +70,7 @@
 </script>
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 	section {
 		max-width: 1170px;
 		margin: auto;
@@ -101,7 +102,7 @@
 		background-color: var(--primary);
 		color: white;
 	}
-	.btn-primary:hover {
+	.btn-primary:hover, .btn-primary:active {
 		
 		background-color: #4aa5b9;
 		border: 1px solid #4aa5b9;
@@ -113,6 +114,7 @@
 	.btn-flat {
 		background-color: transparent;
 		color: var(--primary);
+		font-weight: bold;
 	}
 	.btn-flat:hover {
 		border: 1px solid var(--primary);
@@ -144,7 +146,7 @@
 	}
 
 	html {
-		font-family: 'Jost', sans-serif;
+		font-family: 'Roboto', sans-serif;
 	}
 
 	body {
