@@ -1,6 +1,8 @@
 <template>
 	<the-header title="My Notes"></the-header>
-	<img alt="Vue logo" src="./assets/logo.png">
+	<div class="image">
+		<img alt="Vue logo" src="./assets/logo.png">
+	</div>
 	<the-resource></the-resource>
 </template>
 
@@ -42,6 +44,8 @@
 
 	#app {
 		color: #2c3e50;
+	}
+	.image {
 		text-align: center;
 	}
 </style>

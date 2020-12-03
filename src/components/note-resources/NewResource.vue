@@ -7,6 +7,7 @@
 					id="title" 
 					name="title" 
 					placeholder="Title"
+                    v-model="title"
 				>
 			</div>
 			<div class="form-control">
@@ -16,6 +17,7 @@
 					name="description" 
 					placeholder="Description"
 					rows="5"
+                    ref="description"
 				></textarea>
 			</div>
 			<div class="form-control">
@@ -27,7 +29,18 @@
 
 <script>
 	export default {
-		
+        emits: ['add-resource'],
+		data() {
+            return {
+                title: '',
+            };
+        },
+        methods: {
+            submitData() {
+                const enteredDescription = this.$refs.description.value;
+                this.$emit('add-resource', this.title, enteredDescription);
+            }
+        },
 	}
 </script>
 

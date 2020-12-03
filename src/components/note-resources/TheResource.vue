@@ -19,7 +19,7 @@
 		</single-note>
 	</section>
 	<section v-else>
-		<new-resource></new-resource>
+		<new-resource @add-resource="addResource"></new-resource>
 	</section>
 </template>
 
@@ -71,6 +71,15 @@ import BaseCard from '../ui/BaseCard.vue';
 			};
 		},
 		methods: {
+			addResource(title, description) {
+				const newNote = {
+					id: new Date().toISOString(),
+					title: title,
+					description: description
+				};
+
+				this.notes.unshift(newNote);
+			},
 			setActiveTab(name) {
 				this.activeTab = name;
 			}
