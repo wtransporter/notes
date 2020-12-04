@@ -4,6 +4,7 @@
             <base-error 
                 v-if="hasErrors" 
                 title="Invalid Input"
+                @close="confirmError"
                 >
                 <template #default>
                     <p>Some fields are empty !</p>
@@ -59,9 +60,14 @@
                     return;
                 }
                 this.addNote(this.title, enteredDescription);
+                this.resetFields();
             },
             confirmError() {
                 this.hasErrors = false;
+            },
+            resetFields() {
+                this.title = '';
+                this.$refs.description.value = '';
             }
         },
 	}

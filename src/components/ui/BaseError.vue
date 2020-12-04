@@ -1,5 +1,5 @@
 <template>
-	<div></div>
+	<div @click="$emit('close')"></div>
 	<dialog open>
 		<header>
 			<h3>{{ title }}</h3>
