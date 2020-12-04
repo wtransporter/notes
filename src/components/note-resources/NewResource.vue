@@ -1,6 +1,18 @@
 <template>
 	<section>
         <base-card>
+            <base-error 
+                v-if="hasErrors" 
+                title="Invalid Input"
+                >
+                <template #default>
+                    <p>Some fields are empty !</p>
+                    <p>Check all fields and try again !</p>
+                </template>
+                <template #actions>
+                    <base-button @click="confirmError">Confirm</base-button>
+                </template>
+            </base-error>
             <form @submit.prevent="submitData">
                 <div class="form-control">
                     <label for="title">Title:</label>
@@ -36,12 +48,20 @@
 		data() {
             return {
                 title: '',
+                hasErrors: false,
             };
         },
         methods: {
             submitData() {
                 const enteredDescription = this.$refs.description.value;
+                if (this.title.trim() === '' || enteredDescription.trim() === '') {
+                    this.hasErrors = true;
+                    return;
+                }
                 this.addNote(this.title, enteredDescription);
+            },
+            confirmError() {
+                this.hasErrors = false;
             }
         },
 	}
